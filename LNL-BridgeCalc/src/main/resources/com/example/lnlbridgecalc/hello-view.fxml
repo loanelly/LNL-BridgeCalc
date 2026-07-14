@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<HBox spacing="20" style="-fx-padding: 20; -fx-background-color: #ECEFF1;" xmlns="http://javafx.com" xmlns:fx="http://fxml.com" fx:controller="com.example.lnlbridgecalc.HelloController">
+    <VBox spacing="8" prefWidth="320" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <Label text="LNL-Engineering Мост-Параметры" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #37474F;"/>
+        <Separator/>
+        <Label text="Выберите тип конструкции:"/>
+        <ComboBox fx:id="bridgeTypeBox" onAction="#onTypeChanged" prefWidth="290" style="-fx-cursor: hand;"/>
+        <Label text="Длина пролета L (м):"/>
+        <TextField fx:id="lengthField" text="50.0"/>
+        <Label text="Плотность материала (кг/м³):"/>
+        <TextField fx:id="densityField" text="7850.0"/>
+        <Label text="Предел текучести материала (Па):"/>
+        <TextField fx:id="strengthField" text="250000000.0"/>
+        <VBox fx:id="dynamicFieldsBox" spacing="8" style="-fx-padding: 5 0 5 0;" />
+        <Button text="Рассчитать и спроецировать" onAction="#onCalculate" prefWidth="290" style="-fx-background-color: #2b579a; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-margin-top: 10;"/>
+    </VBox>
+    <VBox spacing="15" HBox.hgrow="ALWAYS">
+        <VBox style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
+            <Label text="Технический монитор LNL-BridgeCalc:" style="-fx-font-weight: bold; -fx-text-fill: #455A64;"/>
+            <TextArea fx:id="resultsArea" editable="false" prefHeight="160" style="-fx-font-family: 'Courier New'; -fx-font-size: 12;"/>
+        </VBox>
+        <StackPane style="-fx-background-color: white; -fx-border-color: #CFD8DC; -fx-border-radius: 8; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
+            <Canvas fx:id="drawingCanvas" width="550" height="240"/>
+        </StackPane>
+    </VBox>
+</HBox>
