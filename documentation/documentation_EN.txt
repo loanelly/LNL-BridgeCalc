@@ -1,1 +1,128 @@
+===============================================================================
+               LNL-ENGINEERING | TECHNICAL SPECIFICATION & MANUAL
+                         COMPLEX: LNL-BRIDGECALC V1.0
+===============================================================================
+
+1. SYSTEM OVERVIEW & ARCHITECTURE
+-------------------------------------------------------------------------------
+LNL-BridgeCalc is an advanced desktop engineering complex built for automated
+structural checking, geometric optimization, and safety monitoring of civil 
+infrastructure designs.
+
+The system decouples data management from presentation using a layered pattern:
+* Core Physics (BridgesDatabase.java): Encapsulates static equations.
+* Control Layer (HelloController.java): Manages JavaFX lifecycle events.
+* Vector Renderer (Canvas API): Computes structural nodes dynamically.
+
+OFFICIAL RESOURCES:
+[1] Developer GitHub: https://github.com/loanelly
+[2] Corporate Cluster: LNL-Engineering IT & Construction Cluster 
+[3] LNL-Engineering GitHub: https://github.com/LNL-Engineering
+
+2. THEORETICAL MECHANICS & TOPOLOGY SPECIFICATIONS
+-------------------------------------------------------------------------------
+
+[TYPE 1: BEAM BRIDGE]
+* Structural Context: Rigid horizontal spans resting on vertical piers.
+* Primary Stress Mode: Pure bending deflection and downward shear.
+* Technical Inputs:
+  - b (Deck width, meters)
+  - h (Main structural beam height, meters)
+  - liveLoad (Dynamic vehicle traffic force impact, kN/m)
+  - kDyn (Dynamic safety impact load multiplier)
+* Analytical Physics:
+  - Cross-section area: A = b * h
+  - Dead load distribution: q_self = A * density * G
+  - Combined calculation load: q_total = q_self + (liveLoad * 1000 * kDyn)
+  - Ultimate bending moment: M_max = (q_total * L^2) / 8
+  - Moment of resistance: W = (b * h^2) / 6
+  - Actual normal stress: sigma_act = M_max / W
+  - Bending deflection: f_max = (5 * q_total * L^4) / (384 * E * I)
+
+[TYPE 2: ARCH BRIDGE]
+* Structural Context: Curved thrust structures converting vertical load.
+* Primary Stress Mode: Axial uniform compression and horizontal lateral thrust.
+* Technical Inputs:
+  - b (Deck traffic layout width, meters)
+  - h (Deck beam cross-section height, meters)
+  - H_arch (Rise of the central arch crown, meters)
+  - t_arch (Arch structural cross-section thickness, meters)
+* Analytical Physics:
+  - Vault spring angularity: alpha = arctan(H_arch / (L / 2))
+  - Combined system load: w_total = Deck weight + Arch rib weight
+  - Horizontal thrust: H_thrust = (w_total * L) / (8 * H_arch)
+  - Maximum axial force at support pier: N_max = H_thrust / cos(alpha)
+  - Critical compressive stress: sigma_comp = N_max / (t_arch * b)
+
+[TYPE 3: CABLE-STAYED BRIDGE]
+* Structural Context: Spans supported continuously by inclined cables.
+* Primary Stress Mode: Tension in stay cables, vertical compression in pylons.
+* Technical Inputs:
+  - b (Deck traffic layout width, meters)
+  - h (Deck beam cross-section height, meters)
+  - H_pylon (Vertical tower height above deck level, meters)
+  - count (Total number of active symmetrical stay cables, units)
+* Analytical Physics:
+  - Mean stay inclination angle: beta = arctan((L / 2) / H_pylon)
+  - Peak stay cable tension path: T_max = (W_deck / 2) / (cos(beta) * count)
+  - Downward tower load: P_pylon = Combined dead weight of deck
+  - Cable tension stress: sigma_cable = T_max / Area of steel cable
+
+[TYPE 4: SUSPENSION BRIDGE]
+* Structural Context: Spans hung from flexible catenary cables over pylons.
+* Primary Stress Mode: High tension in main cables, gravity anchorage pull.
+* Technical Inputs:
+  - b (Deck traffic layout width, meters)
+  - h (Deck beam cross-section height, meters)
+  - f_cable (Mid-span main cable sag drop depth, meters)
+  - d_cable (Solid structural diameter of main wire cable, meters)
+* Analytical Physics:
+  - Main cable steel area: A_cable = pi * (d_cable / 2)^2
+  - Horizontal tension force component: H_thrust = (q_deck * L^2) / (8 * f)
+  - Support peak tension: T_support = H_thrust * sqrt(1 + 16 * (f / L)^2)
+  - Target cable stress capacity: sigma_act = T_support / A_cable
+
+[TYPE 5: RIGID FRAME BRIDGE]
+* Structural Context: Monolithic structures where beams are rigidly joined.
+* Primary Stress Mode: Frame angular bending, shear, column compression.
+* Technical Inputs:
+  - b (Deck traffic layout width, meters)
+  - h_beam (Main girder ригель height, meters)
+  - t_frame (Vertical structural pier column thickness, meters)
+  - H_frame (Total clear vertical height of support piers, meters)
+* Analytical Physics:
+  - Framework structural system mass: w_frame = Girder mass + Pier columns mass
+  - Rigid connection moment: M_support = (q_total * L^2) / 12
+  - Bending resistance capacity: W_beam = (b * h_beam^2) / 6
+  - Joint stress value: sigma_comb = M_support / W_beam
+
+
+3. SAFETY STANDARDS & METRICS EVALUATION
+-------------------------------------------------------------------------------
+The structural validation utilizes the Limit State Method. The active factor of 
+safety is calculated using the ultimate material resistance limit (sigma_B):
+
+     Safety Factor (K_safe) = Ultimate Strength (sigma_B) / Active Stress
+
+CRITERIA MATRIX:
+* K_safe >= 1.5 -> STATUS: APPROVED (Structure stable under maximum design load)
+* 1.0 <= K_safe < 1.5 -> STATUS: CRITICAL HAZARD (Plastic strain deformation)
+* K_safe < 1.0 -> STATUS: COLLAPSE FAILURE (Immediate structural stress fracture)
+
+
+4. EXECUTABLE PACKAGING & IMPLEMENTATION
+-------------------------------------------------------------------------------
+The execution pipeline is optimized via Java 17, JavaFX 17, and Maven.
+To bypass operating system restriction layers during runtime, launch using 
+the independent non-JavaFX execution class wrapper (JarLauncher.java).
+
+BUILD Fat JAR EXECUTION CODE:
+$ mvn clean package
+
+EXECUTION VIA SYSTEM TERMINAL:
+$ java -jar target/LNL-BridgeCalc-1.0-SNAPSHOT.jar
+
+-------------------------------------------------------------------------------
+END OF FILE [LNL-ENGINEERING TECHNICAL DIVISION]
+===============================================================================
 
