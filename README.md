@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="logo.svg" width="150" height="150" alt="LNL-BridgeCalc Logo">
-</p>
+
 <h1 align="center">LNL-BridgeCalc</h1>
 
 <p align="center">
