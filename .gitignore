@@ -1,0 +1,29 @@
+# Сборщик Maven (временные файлы и готовый Fat JAR)
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.nextDevelopmentVersion
+pom.xml.backup
+release.properties
+dependency-reduced-pom.xml
+build.log
+
+# Среда разработки IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Системные файлы операционных систем
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Локальные логи и автоматически сгенерированные отчеты безопасности
+*.log
+LNL_Report_*.txt
