@@ -1,4 +1,6 @@
-
+<p align="center"> 
+  <img src="https://github.com/loanelly/WayPacker/blob/main/img/Logo%20variations/bridgelogoLNL.png" width="150" height="150" alt="LNL-BridgeCalc Logo"> 
+</p> 
 <h1 align="center">LNL-BridgeCalc</h1>
 
 <p align="center">
@@ -76,6 +78,8 @@ java -jar target/LNL-BridgeCalc-1.0-SNAPSHOT.jar
 ```
 
 ---
-<p align="center">
-  Created with 🛠️ precision by <a href="https://github.com">loanelly</a> for the <strong>LNL-Engineering Cluster</strong>.
-</p>
+<div align="center">
+  <p>🛠️ <b><a href="https://github.com/LNL-Engineering">LNL-Engineering</a></b> — <i>Building secure architectures through physical entropy.</i></p>
+  <p>📬 <b>Personal Profile:</b> <a href="https://github.com/loanelly">@loanelly</a></p>
+</div>
+
